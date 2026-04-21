@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Garmetix.Core/Garmetix.Core.csproj" />
+  <Project Path="Garmetix.Data/Garmetix.Data.csproj" />
+  <Project Path="Garmetix.ERP/Garmetix.ERP.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
