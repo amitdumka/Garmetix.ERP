@@ -4,4 +4,5 @@
   <Project Path="Garmetix.ERP/Garmetix.ERP.csproj">
     <Deploy Solution="Debug|*" />
   </Project>
+  <Project Path="Garmetix.UI/Garmetix.UI.csproj" Id="8f445c63-aacb-4999-b0a0-410fc39150d9" />
 </Solution>
