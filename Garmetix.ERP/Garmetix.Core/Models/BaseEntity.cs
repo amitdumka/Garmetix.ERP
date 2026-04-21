@@ -1,33 +1,42 @@
+using Garmetix.Core.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Garmetix.Core.Models
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : IEntity
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
-        
-        // Universal Audit Trail
+
+        // Audit Trail
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
-        
-        // Critical for Enterprise Systems: Never actually delete financial data
-        public bool IsDeleted { get; set; } = false; 
+        public string? CreatedBy { get; set; }
+
+        // Data Status Flags
+        public bool Synced { get; set; } = false;
+        public bool IsDeleted { get; set; } = false;
     }
 }
 
 namespace Garmetix.Core.Models
 {
+    // Level 1: Company Level Data
     public abstract class CompanyBase : BaseEntity
     {
-        // Future proofing for Multi-Branch/Multi-Company support
-        // public Guid? CompanyId { get; set; } 
+        // Example for future: public Guid? CompanyId { get; set; } 
     }
 
-    public abstract class StoreBase : CompanyBase
+    // Level 2: Regional or Group Level Data
+    public abstract class StoreGroupBase : CompanyBase
     {
-        // Future proofing for Multi-Store POS support
-        // public Guid? StoreId { get; set; }
+        // Example for future: public Guid? StoreGroupId { get; set; }
+    }
+
+    // Level 3: Individual Store/Branch Data
+    public abstract class StoreBase : StoreGroupBase
+    {
+        // Example for future: public Guid? StoreId { get; set; }
     }
 }

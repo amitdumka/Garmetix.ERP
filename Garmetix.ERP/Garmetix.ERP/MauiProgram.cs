@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Garmetix.Authentication;
+using Microsoft.Extensions.Logging;
 
 namespace Garmetix.ERP
 {
@@ -19,6 +20,7 @@ namespace Garmetix.ERP
     		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddGarmetixAuthentication();
             return builder.Build();
         }
     }

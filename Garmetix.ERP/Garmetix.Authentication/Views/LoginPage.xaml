@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Garmetix.Authentication.Views.LoginPage"
+             Shell.NavBarIsVisible="False" BackgroundColor="#0F172A">
+    <Grid>
+        <Border BackgroundColor="#FFFFFF" WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center" 
+                StrokeShape="RoundRectangle 20" StrokeThickness="0" Padding="40">
+            <VerticalStackLayout Spacing="20">
+                <Label Text="GARMETIX ERP" FontSize="24" FontAttributes="Bold" TextColor="#0F172A" HorizontalOptions="Center"/>
+
+                <Entry Placeholder="Username" Text="{Binding UserName}" BackgroundColor="#F8FAFC" HeightRequest="50" Margin="0,20,0,0"/>
+                <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" BackgroundColor="#F8FAFC" HeightRequest="50"/>
+
+                <Label Text="{Binding ErrorMessage}" TextColor="#EF4444" FontSize="13" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                <Button Text="SIGN IN" Command="{Binding LoginCommand}" IsEnabled="{Binding IsNotBusy}" BackgroundColor="#4F46E5" TextColor="White" FontAttributes="Bold" HeightRequest="50"/>
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#4F46E5"/>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

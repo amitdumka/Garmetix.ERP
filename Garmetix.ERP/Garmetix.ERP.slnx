@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Garmetix.Authentication/Garmetix.Authentication.csproj" Id="a84f61a0-2b49-4708-9194-653ff0ca682a" />
   <Project Path="Garmetix.Core/Garmetix.Core.csproj" />
   <Project Path="Garmetix.Data/Garmetix.Data.csproj" />
   <Project Path="Garmetix.ERP/Garmetix.ERP.csproj">
