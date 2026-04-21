@@ -4,11 +4,52 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Garmetix.ERP"
-    Title="Garmetix.ERP">
+    Title="Garmetix.ERP"
+    xmlns:views="clr-namespace:Garmetix.UI.Views;assembly=Garmetix.UI"
+    xmlns:auth="clr-namespace:Garmetix.Authentication.Views;assembly=Garmetix.Authentication"
+    xmlns:accounting="clr-namespace:Garmetix.UI.Views.Accounting;assembly=Garmetix.UI"
+    xmlns:sales="clr-namespace:Garmetix.UI.Views.Sales;assembly=Garmetix.UI"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="AliceBlue"
+    
+    FlyoutHeaderBehavior="Fixed"
+    
+    
+    >
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="150" BackgroundColor="#D4AF37" Padding="20">
+            <VerticalStackLayout VerticalOptions="End" Spacing="5">
+                <Label Text="GARMETIX ERP" FontSize="20" FontAttributes="Bold" TextColor="#0F172A" CharacterSpacing="2"/>
+                <Label Text="Aadwika Fashion / Admin" FontSize="12" TextColor="#334155" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate auth:LoginPage}" FlyoutItemIsVisible="False" />
+    <ShellContent Route="PinUnlockPage" ContentTemplate="{DataTemplate auth:PinUnlockPage}" FlyoutItemIsVisible="False" />
+
+    <FlyoutItem Title="Overview Dashboard" Icon="dashboard_icon.png">
+        <ShellContent Route="DashboardPage" ContentTemplate="{DataTemplate views:DashboardPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Point of Sale" Icon="pos_icon.png">
+        <ShellContent Route="PosPage" ContentTemplate="{DataTemplate sales:PosPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Accounting &amp; Finance" Icon="finance_icon.png">
+        <Tab Title="Vouchers">
+            <ShellContent Route="VoucherRegistryPage" ContentTemplate="{DataTemplate accounting:VoucherRegistryPage}" />
+        </Tab>
+        <Tab Title="Ledgers &amp; Parties">
+            <ShellContent Route="DynamicRegistryPage?EntityType=Party" ContentTemplate="{DataTemplate views:DynamicRegistryPage}" />
+        </Tab>
+        <Tab Title="Banking">
+            <ShellContent Route="DynamicRegistryPage?EntityType=BankAccount" ContentTemplate="{DataTemplate views:DynamicRegistryPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings &amp; Security" Icon="settings_icon.png">
+        <ShellContent Route="ChangePasswordPage" ContentTemplate="{DataTemplate auth:ChangePasswordPage}" />
+    </FlyoutItem>
 
 </Shell>

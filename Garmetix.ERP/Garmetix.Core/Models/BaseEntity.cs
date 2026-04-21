@@ -6,12 +6,16 @@ namespace Garmetix.Core.Models
 {
     public abstract class BaseEntity : IEntity
     {
+        [Display(AutoGenerateField = false)]
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
 
+        [Display(AutoGenerateField = false)]
         // Audit Trail
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        [Display(AutoGenerateField = false)]
         public DateTime? UpdatedAt { get; set; }
+        [Display(AutoGenerateField = false)]
         public string? CreatedBy { get; set; }
 
         // Data Status Flags

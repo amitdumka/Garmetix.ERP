@@ -7,6 +7,12 @@ namespace Garmetix.Authentication
 {
     public static class AuthExtensions
     {
+
+        public static MauiAppBuilder UseGarmetixAuthentication(this MauiAppBuilder builder)
+        {
+            builder.Services.AddGarmetixAuthentication();
+            return builder;
+        }
         public static IServiceCollection AddGarmetixAuthentication(this IServiceCollection services)
         {
             // Register Core Security Service

@@ -1,5 +1,9 @@
 ﻿using Garmetix.Authentication;
 using Microsoft.Extensions.Logging;
+using Garmetix.UI;
+using Garmetix.Data;
+using Syncfusion.Maui.Toolkit.Hosting;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace Garmetix.ERP
 {
@@ -9,7 +13,13 @@ namespace Garmetix.ERP
         {
             var builder = MauiApp.CreateBuilder();
             builder
+                .UseGarmetixDataModules()
+                .UseGarmetixAuthentication()
+                .UseGarmetixBaseUI()
+               .ConfigureSyncfusionToolkit()
+               .ConfigureSyncfusionCore()
                 .UseMauiApp<App>()
+
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -17,10 +27,11 @@ namespace Garmetix.ERP
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddGarmetixAuthentication();
+            //builder.Services.AddGarmetixAuthentication();
+            //builder.UseGarmetixBaseUI();
             return builder.Build();
         }
     }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfgrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             x:Class="Garmetix.UI.Views.DynamicRegistryPage"
+             Title="{Binding Title}" BackgroundColor="#F8FAFC">
+
+    <Grid RowDefinitions="*">
+        <Border Margin="20" BackgroundColor="White" Padding="15" StrokeShape="RoundRectangle 12" StrokeThickness="0">
+            <Border.Shadow><Shadow Brush="#0F172A" Offset="0,4" Radius="10" Opacity="0.1" /></Border.Shadow>
+            <Grid>
+                <sfgrid:SfDataGrid ItemsSource="{Binding Items}" AutoGenerateColumnsMode="SmartReset" HeaderRowHeight="50" RowHeight="55" SelectionMode="Single"
+                                   HeaderGridLinesVisibility="Horizontal" GridLinesVisibility="Horizontal">
+                    
+                    <sfgrid:SfDataGrid.Columns>
+                        <sfgrid:DataGridTemplateColumn HeaderText="Actions" Width="120">
+                            <sfgrid:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Text="Options" BackgroundColor="#D4AF37" TextColor="#0F172A" CornerRadius="6" HeightRequest="35" FontAttributes="Bold"
+                                            Command="{Binding BindingContext.ActionMenuCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                            CommandParameter="{Binding .}"/>
+                                </DataTemplate>
+                            </sfgrid:DataGridTemplateColumn.CellTemplate>
+                        </sfgrid:DataGridTemplateColumn>
+                    </sfgrid:SfDataGrid.Columns>
+                </sfgrid:SfDataGrid>
+            </Grid>
+        </Border>
+
+        <Button Command="{Binding AddNewCommand}" Text="+" FontSize="32" FontAttributes="Bold" TextColor="#0F172A"
+                BackgroundColor="#D4AF37" CornerRadius="30" WidthRequest="60" HeightRequest="60" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,40">
+            <Button.Shadow><Shadow Brush="#D4AF37" Offset="0,4" Radius="10" Opacity="0.5" /></Button.Shadow>
+        </Button>
+    </Grid>
+</ContentPage>
