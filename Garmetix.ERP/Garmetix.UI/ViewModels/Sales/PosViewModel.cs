@@ -27,7 +27,7 @@ namespace Garmetix.UI.ViewModels.Sales
 
         public Array PaymentModes => Enum.GetValues(typeof(PaymentMode));
 
-        public PosViewModel(IRepository<Invoice> invoiceRepo, IRepository<InvoiceItem> invoiceItemRepo, IRepository<Stock> stockRepo, IRepository<Product> productRepo)
+        public PosViewModel(IRepository<Invoice> invoiceRepo, IRepository<InvoiceItem> invoiceItemRepo, IRepository<Stock> stockRepo, IRepository<Product> productRepo, INotificationService notification) : base(notification)
         {
             _invoiceRepo = invoiceRepo;
             _invoiceItemRepo = invoiceItemRepo;

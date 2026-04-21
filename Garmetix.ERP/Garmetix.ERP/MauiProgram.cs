@@ -30,6 +30,22 @@ namespace Garmetix.ERP
             builder.Logging.AddDebug();
 #endif
 
+            // ... setup dependencies ...
+
+            // GLOBAL EXCEPTION HANDLING
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+            {
+                var ex = args.ExceptionObject as Exception;
+                // Ideally, log this to a file or Sentry/AppCenter. 
+                System.Diagnostics.Debug.WriteLine($"CRITICAL UNHANDLED: {ex?.Message}");
+            };
+
+            TaskScheduler.UnobservedTaskException += (sender, args) =>
+            {
+                // Prevents background task crashes from killing the app
+                args.SetObserved();
+                System.Diagnostics.Debug.WriteLine($"BACKGROUND CRASH: {args.Exception.Message}");
+            };
             //builder.Services.AddGarmetixAuthentication();
             //builder.UseGarmetixBaseUI();
             return builder.Build();

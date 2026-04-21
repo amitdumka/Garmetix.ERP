@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using Garmetix.Core.ViewModels;
 using Garmetix.Authentication.Services;
+using Garmetix.Core.Interfaces;
 
 namespace Garmetix.Authentication.ViewModels
 {
@@ -14,7 +15,7 @@ namespace Garmetix.Authentication.ViewModels
         [ObservableProperty] private string _targetUsername;
         [ObservableProperty] private string _newPassword;
 
-        public ResetPasswordViewModel(IAuthService authService)
+        public ResetPasswordViewModel(IAuthService authService, INotificationService notification) : base(notification)
         {
             _authService = authService;
             Title = "Admin: Reset Staff Password";

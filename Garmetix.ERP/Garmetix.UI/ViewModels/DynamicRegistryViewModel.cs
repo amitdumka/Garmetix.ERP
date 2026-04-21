@@ -1,11 +1,12 @@
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
+using Garmetix.Core.Interfaces;
 using Garmetix.Core.ViewModels;
 using Garmetix.UI.Services;
+using Microsoft.Maui.Controls;
+using System.Collections.ObjectModel;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Garmetix.UI.ViewModels
 {
@@ -17,7 +18,7 @@ namespace Garmetix.UI.ViewModels
         [ObservableProperty] private string _entityType; // e.g., "Party", "Bank"
         [ObservableProperty] private ObservableCollection<object> _items = new();
 
-        public DynamicRegistryViewModel(MasterDataService masterDataService)
+        public DynamicRegistryViewModel(MasterDataService masterDataService, INotificationService notification) : base(notification)
         {
             _masterDataService = masterDataService;
         }

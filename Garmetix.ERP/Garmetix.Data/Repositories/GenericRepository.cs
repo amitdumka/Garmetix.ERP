@@ -2,7 +2,9 @@
 using Garmetix.Core.Models;
 using Garmetix.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Garmetix.Data.Repositories
 {
@@ -17,8 +19,44 @@ namespace Garmetix.Data.Repositories
             _dbSet = _context.Set<T>();
         }
 
+        // ... inside GenericRepository<T> class ...
+
+        private void ValidateEntity(T entity)
+        {
+            var validationContext = new ValidationContext(entity, serviceProvider: null, items: null);
+            var validationResults = new List<ValidationResult>();
+
+            bool isValid = Validator.TryValidateObject(entity, validationContext, validationResults, validateAllProperties: true);
+
+            if (!isValid)
+            {
+                // Throws a clean error message that BaseViewModel will catch and show to the user!
+                throw new ValidationException(validationResults.First().ErrorMessage);
+            }
+        }
+
+        // Update your Add and Update methods:
+        public async Task AddAsync(T entity)
+        {
+            ValidateEntity(entity); // <--- Add this!
+
+            entity.CreatedAt = DateTime.UtcNow;
+            entity.Synced = false;
+            await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            ValidateEntity(entity); // <--- Add this!
+
+            entity.UpdatedAt = DateTime.UtcNow;
+            entity.Synced = false;
+            _dbSet.Update(entity);
+            await _context.SaveChangesAsync();
+        }
         public async Task<T> GetByIdAsync(Guid id)
-            => await _dbSet.FindAsync(id);
+                => await _dbSet.FindAsync(id);
 
         public async Task<IEnumerable<T>> GetAllAsync()
             => await _dbSet.ToListAsync();
@@ -29,13 +67,13 @@ namespace Garmetix.Data.Repositories
         public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
             => await _dbSet.FirstOrDefaultAsync(predicate);
 
-        public async Task AddAsync(T entity)
-        {
-            entity.CreatedAt = DateTime.UtcNow;
-            entity.Synced = false; // Needs to be pushed to cloud
-            await _dbSet.AddAsync(entity);
-            await _context.SaveChangesAsync();
-        }
+        //public async Task AddAsync(T entity)
+        //{
+        //    entity.CreatedAt = DateTime.UtcNow;
+        //    entity.Synced = false; // Needs to be pushed to cloud
+        //    await _dbSet.AddAsync(entity);
+        //    await _context.SaveChangesAsync();
+        //}
 
         public async Task AddRangeAsync(IEnumerable<T> entities)
         {
@@ -49,13 +87,13 @@ namespace Garmetix.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(T entity)
-        {
-            entity.UpdatedAt = DateTime.UtcNow;
-            entity.Synced = false; // Flag as unsynced because it was modified
-            _dbSet.Update(entity);
-            await _context.SaveChangesAsync();
-        }
+        //public async Task UpdateAsync(T entity)
+        //{
+        //    entity.UpdatedAt = DateTime.UtcNow;
+        //    entity.Synced = false; // Flag as unsynced because it was modified
+        //    _dbSet.Update(entity);
+        //    await _context.SaveChangesAsync();
+        //}
 
         public async Task DeleteAsync(T entity)
         {

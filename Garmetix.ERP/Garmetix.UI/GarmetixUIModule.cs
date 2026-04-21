@@ -1,4 +1,5 @@
-﻿using Garmetix.UI.Services;
+﻿using Garmetix.Core.Interfaces;
+using Garmetix.UI.Services;
 using Garmetix.UI.ViewModels;
 using Garmetix.UI.Views;
 
@@ -37,7 +38,7 @@ namespace Garmetix.UI
             // builder.Services.AddSingleton<IMyService, MyService>();
             // 1. Register the Dynamic Master Data Service (Crucial for MDM)
             builder.Services.AddSingleton<MasterDataService>();
-
+            builder.Services.AddSingleton<INotificationService, AppNotificationService>();
             // 2. Register the Dynamic UI Pages & ViewModels
             builder.Services.AddTransient<DynamicRegistryViewModel>();
             builder.Services.AddTransient<DynamicRegistryPage>();
