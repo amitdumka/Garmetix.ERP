@@ -36,16 +36,26 @@
         <ShellContent Route="PosPage" ContentTemplate="{DataTemplate sales:PosPage}" />
     </FlyoutItem>
 
+   
+
     <FlyoutItem Title="Accounting &amp; Finance" Icon="finance_icon.png">
+
         <Tab Title="Vouchers">
             <ShellContent Route="VoucherRegistryPage" ContentTemplate="{DataTemplate accounting:VoucherRegistryPage}" />
         </Tab>
+
         <Tab Title="Ledgers &amp; Parties">
-            <ShellContent Route="DynamicRegistryPage?EntityType=Party" ContentTemplate="{DataTemplate views:DynamicRegistryPage}" />
+            <ShellContent Route="PartyRegistryTab">
+                <views:DynamicRegistryPage EntityType="Party" />
+            </ShellContent>
         </Tab>
+
         <Tab Title="Banking">
-            <ShellContent Route="DynamicRegistryPage?EntityType=BankAccount" ContentTemplate="{DataTemplate views:DynamicRegistryPage}" />
+            <ShellContent Route="BankRegistryTab">
+                <views:DynamicRegistryPage EntityType="BankAccount" />
+            </ShellContent>
         </Tab>
+
     </FlyoutItem>
 
     <FlyoutItem Title="Settings &amp; Security" Icon="settings_icon.png">
