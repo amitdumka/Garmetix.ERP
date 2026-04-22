@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Garmetix.Core.ViewModels;
 using Garmetix.Authentication.Services;
+using Garmetix.Core.Interfaces;
 namespace Garmetix.Authentication.ViewModels
 {
     public partial class ChangePasswordViewModel : BaseViewModel
@@ -12,7 +13,7 @@ namespace Garmetix.Authentication.ViewModels
         [ObservableProperty] private string _newPassword;
         [ObservableProperty] private string _confirmPassword;
 
-        public ChangePasswordViewModel(IAuthService authService)
+        public ChangePasswordViewModel(IAuthService authService, INotificationService notification): base(notification)
         {
             _authService = authService;
             Title = "Change Password";

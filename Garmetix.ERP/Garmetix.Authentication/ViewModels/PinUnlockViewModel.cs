@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
-using Garmetix.Core.ViewModels;
 using Garmetix.Authentication.Services;
+using Garmetix.Core.Interfaces;
+using Garmetix.Core.ViewModels;
+using Microsoft.Maui.Controls;
+using System.Threading.Tasks;
 
 namespace Garmetix.Authentication.ViewModels
 {
@@ -20,7 +21,7 @@ namespace Garmetix.Authentication.ViewModels
         [ObservableProperty] private bool _dot3;
         [ObservableProperty] private bool _dot4;
 
-        public PinUnlockViewModel(IAuthService authService)
+        public PinUnlockViewModel(IAuthService authService, INotificationService notification) : base(notification)
         {
             _authService = authService;
             Title = "Secure Unlock";

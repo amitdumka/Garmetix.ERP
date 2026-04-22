@@ -1,11 +1,12 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Garmetix.Core.Interfaces;
+using Garmetix.Core.ViewModels;
+using Garmetix.UI.Services;
+using Microsoft.Maui.Controls;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
-using Garmetix.Core.ViewModels;
-using Garmetix.UI.Services;
 
 namespace Garmetix.UI.ViewModels
 {
@@ -21,7 +22,7 @@ namespace Garmetix.UI.ViewModels
         // This holds the dynamic object (Party, Bank, etc.)
         [ObservableProperty] private object _currentEntity;
 
-        public DynamicEntryViewModel(MasterDataService masterDataService)
+        public DynamicEntryViewModel(MasterDataService masterDataService, INotificationService notification) : base(notification)
         {
             _masterDataService = masterDataService;
         }

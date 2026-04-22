@@ -18,7 +18,55 @@
 //}
 namespace Garmetix.Core
 {
-  public  enum CompanyType
+    public enum Gender
+    {
+        Male, Female, Transgender, NonBinary, Other
+    }
+    public enum SalaryComponent
+    {
+        NetSalary,
+        LastPcs,
+        WOWBill,
+        SundaySalary,
+        Incentive,
+        Others,
+        Advance,
+        PaidLeave,
+        SickLeave,
+        SalaryAdvance,
+        Receipts,
+    }
+
+    public enum EmployeeCategory
+    {
+        Salesman,
+        StoreManager,
+        HouseKeeping,
+        Owner,
+        Accounts,
+        TailorMaster,
+        Tailors,
+        TailoringAssistance,
+        Others,
+    }
+
+    public enum AttendanceStatus
+    {
+        Present,
+        Absent,
+        HalfDay,
+        Sunday,
+        Holiday,
+        StoreClosed,
+        SundayHoliday,
+        SickLeave,
+        PaidLeave,
+        CasualLeave,
+        OnLeave,
+        Leave,
+        WorkFromHome
+    }
+    public  enum CompanyType
     {
         Proprietorship, // Proprietorship
         Partnership,

@@ -19,7 +19,7 @@ namespace Garmetix.UI.ViewModels
         [ObservableProperty] private decimal _todaysExpenses;
         [ObservableProperty] private decimal _totalBankBalance;
 
-        public DashboardViewModel(IRepository<Voucher> voucherRepo, IRepository<BankAccount> bankRepo)
+        public DashboardViewModel(IRepository<Voucher> voucherRepo, IRepository<BankAccount> bankRepo, INotificationService notification) : base(notification)
         {
             _voucherRepo = voucherRepo;
             _bankRepo = bankRepo;

@@ -19,6 +19,26 @@ namespace Garmetix.Authentication.Services
             _userRepo = userRepo;
         }
 
+        // Inside AuthService class implementation:
+        public bool HasPermission(params LoginRole[] allowedRoles)
+        {
+            if (CurrentUser == null) return false;
+
+            // Admins and Owners bypass all role checks
+            if (CurrentUser.Admin || CurrentUser.UserType == UserType.Owner || CurrentUser.UserType == UserType.Admin)
+                return true;
+
+            return allowedRoles.Contains(CurrentUser.Role);
+        }
+
+        public bool CanAccessStore(Guid targetStoreId)
+        {
+            if (CurrentUser == null) return false;
+            if (CurrentUser.AppOperation == AppOperation.All || CurrentUser.Admin) return true;
+
+            // Strict Store check
+            return CurrentUser.StoreId == targetStoreId;
+        }
         public string HashSecret(string input)
         {
             if (string.IsNullOrEmpty(input)) return string.Empty;

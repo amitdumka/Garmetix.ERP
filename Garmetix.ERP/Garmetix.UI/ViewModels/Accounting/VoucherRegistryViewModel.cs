@@ -18,7 +18,7 @@ namespace Garmetix.UI.ViewModels.Accounting
         private System.Collections.Generic.List<Voucher> _allVouchers = new();
         [ObservableProperty] private ObservableCollection<Voucher> _filteredVouchers = new();
 
-        public VoucherRegistryViewModel(IRepository<Voucher> voucherRepo)
+        public VoucherRegistryViewModel(IRepository<Voucher> voucherRepo, INotificationService notification) : base(notification)
         {
             _voucherRepo = voucherRepo;
             Title = "Aadwika Fashion | Vouchers";

@@ -5,12 +5,16 @@ namespace Garmetix.ERP
 {
     public partial class App : Application
     {
+
+        private const string synckey = "Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdlWXtccnRTRmFcUkJ3XUBWYEo=";
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdlWXtccnRTRmFcUkJ3XUBWYEo=");
             InitializeComponent();
             // Load the AppShell, but it will be hidden initially by the Auth router
             MainPage = new AppShell();
             Garmetix.UI.GarmetixUIModule.EnableRouting();
+            
         }
         protected override async void OnStart()
         {

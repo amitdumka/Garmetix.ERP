@@ -4,7 +4,8 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using Garmetix.Core.ViewModels;
 using Garmetix.Authentication.Services;
- 
+using Garmetix.Core.Interfaces;
+
 namespace Garmetix.Authentication.ViewModels
 {
     public partial class LoginViewModel : BaseViewModel
@@ -15,7 +16,7 @@ namespace Garmetix.Authentication.ViewModels
         [ObservableProperty] private string _password;
         [ObservableProperty] private string _errorMessage;
 
-        public LoginViewModel(IAuthService authService)
+        public LoginViewModel(IAuthService authService, INotificationService notification): base(notification)
         {
             _authService = authService;
             Title = "System Login";

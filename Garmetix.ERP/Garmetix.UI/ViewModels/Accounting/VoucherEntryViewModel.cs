@@ -33,7 +33,7 @@ namespace Garmetix.UI.ViewModels.Accounting
         [ObservableProperty] private PaymentMode _selectedPaymentMode = PaymentMode.Cash;
         [ObservableProperty] private BankAccount _selectedBank;
 
-        public VoucherEntryViewModel(IRepository<Voucher> voucherRepo, IRepository<Party> partyRepo, IRepository<BankAccount> bankRepo)
+        public VoucherEntryViewModel(IRepository<Voucher> voucherRepo, IRepository<Party> partyRepo, IRepository<BankAccount> bankRepo, INotificationService notification) : base(notification)
         {
             _voucherRepo = voucherRepo;
             _partyRepo = partyRepo;
