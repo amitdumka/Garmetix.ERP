@@ -31,11 +31,11 @@
     <FlyoutItem Title="Overview Dashboard" Icon="dashboard_icon.png">
         <ShellContent Route="DashboardPage" ContentTemplate="{DataTemplate views:DashboardPage}" />
     </FlyoutItem>
-    
+
     <FlyoutItem Title="Point of Sale" Icon="pos_icon.png">
         <ShellContent Route="PosPage" ContentTemplate="{DataTemplate sales:PosPage}" />
     </FlyoutItem>
-    
+
     <FlyoutItem Title="Accounting &amp; Finance" Icon="finance_icon.png">
         <Tab Title="Vouchers">
             <ShellContent Route="VoucherRegistryPage" ContentTemplate="{DataTemplate accounting:VoucherRegistryPage}" />

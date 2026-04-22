@@ -46,8 +46,7 @@ namespace Garmetix.ERP
                 args.SetObserved();
                 System.Diagnostics.Debug.WriteLine($"BACKGROUND CRASH: {args.Exception.Message}");
             };
-            //builder.Services.AddGarmetixAuthentication();
-            //builder.UseGarmetixBaseUI();
+             
             return builder.Build();
         }
     }
