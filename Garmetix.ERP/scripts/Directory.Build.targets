@@ -1,0 +1,17 @@
+﻿<Project>
+  <PropertyGroup>
+    <CodeSignPfx>certs\codesign.pfx</CodeSignPfx>
+    <CodeSignPassword></CodeSignPassword>
+    <SignTool>signtool</SignTool>
+  </PropertyGroup>
+
+  <Target Name="SignOutputs" AfterTargets="Build" Condition="'' == 'Windows_NT' and Exists('')">
+    <ItemGroup>
+      <SignFiles Include="" />
+      <SignFiles Include="**\*.dll" />
+      <SignFiles Include="**\*.exe" />
+    </ItemGroup>
+
+    <Exec Command="&quot;&quot; sign /fd SHA256 /f &quot;&quot; /p &quot;&quot; &quot;%(SignFiles.Identity)&quot;" />
+  </Target>
+</Project>

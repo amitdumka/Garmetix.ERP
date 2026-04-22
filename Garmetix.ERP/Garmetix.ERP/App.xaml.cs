@@ -9,7 +9,7 @@ namespace Garmetix.ERP
         private const string synckey = "Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdlWXtccnRTRmFcUkJ3XUBWYEo=";
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdlWXtccnRTRmFcUkJ3XUBWYEo=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(synckey);
             InitializeComponent();
             // Load the AppShell, but it will be hidden initially by the Auth router
             MainPage = new AppShell();

@@ -45,6 +45,41 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<AssemblyTitle>Garmetix</AssemblyTitle>
+		<SignAssembly>False</SignAssembly>
+		<Title>Garmetix</Title>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>com.bharatinc.garmetix.erp</ApplicationId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -83,4 +118,16 @@
 	  <ProjectReference Include="..\Garmetix.UI\Garmetix.UI.csproj" />
 	</ItemGroup>
 
+	<!-- Dev workaround: unblock the built Garmetix.Data.dll on Windows to avoid WDAC/AppLocker blocking
+		 Remove or adjust for CI/production; long-term fix is signing/packaging or whitelisting in policy -->
+	<Target Name="UnblockGarmetixData" AfterTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+	  <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;if (Test-Path '$(TargetDir)Garmetix.Data.dll') { Unblock-File '$(TargetDir)Garmetix.Data.dll' }&quot;" />
+	</Target>
+
 </Project>
+
+  <!--<Target Name="UnblockGarmetixData" AfterTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;if (Test-Path '$(TargetDir)Garmetix.Data.dll') { Unblock-File '$(TargetDir)Garmetix.Data.dll' }&quot;" />
+  </Target>
+
+</Project>-->
