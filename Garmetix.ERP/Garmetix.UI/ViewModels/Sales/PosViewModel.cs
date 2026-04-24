@@ -36,7 +36,6 @@ namespace Garmetix.UI.ViewModels.Sales
 
             Title = "Retail Point of Sale";
             ResetPOS();
-            _ = LoadProductsAsync();
         }
 
         private void ResetPOS()
@@ -46,10 +45,23 @@ namespace Garmetix.UI.ViewModels.Sales
             SelectedProduct = null;
         }
 
-        private async Task LoadProductsAsync()
+        public async Task LoadProductsAsync()
         {
-            var prods = await _productRepo.GetAllAsync();
-            AvailableProducts = new ObservableCollection<Product>(prods);
+            try
+            {
+
+                var prods = await _productRepo.GetAllAsync();
+                AvailableProducts = new ObservableCollection<Product>(prods);
+
+            }
+            catch (Exception e)
+            {
+                // show alert
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to load products: " + e.Message, "OK");
+                // Go back to previous page
+                await Application.Current.MainPage.Navigation.PopAsync();
+
+            }
         }
 
         partial void OnSelectedProductChanged(Product value)

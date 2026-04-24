@@ -7,7 +7,7 @@ namespace Garmetix.Data
     // All the code in this file is included in all platforms.
     public static class DataMdoules
     {
-        public const string DatabaseFileName = "garmetix_erp_v1.db3";
+        public const string DatabaseFileName = "garmetix_erp_v2.db3";
 
         public static MauiAppBuilder UseGarmetixDataModules(this MauiAppBuilder builder)
         {

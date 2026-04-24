@@ -1,4 +1,5 @@
 ﻿using Garmetix.Authentication.Services;
+using Garmetix.Core;
 using Garmetix.Core.Auth; 
 using Garmetix.Core.Models.Stores;
 using Garmetix.Data.Context;
@@ -25,7 +26,7 @@ namespace Garmetix.UI.Seeders
             var company = await _context.Companies.FirstOrDefaultAsync();
             if (company == null)
             {
-                company = new Company { Name = "Aadwika Fashion" };
+                company = new Company { Name = "Aadwika Fashion" , City="Dumka", CompanyType= CompanyType.Proprietorship, StartDate=DateTime.Now, Id = Guid.NewGuid() , Active=true, Address="Dumka", Code="AF"};
                 await _context.Companies.AddAsync(company);
                 await _context.SaveChangesAsync();
             }
@@ -38,6 +39,7 @@ namespace Garmetix.UI.Seeders
                 {
                     Name = "MBO",
                     CompanyId = company.Id
+                    ,Id = Guid.NewGuid()
                 };
                 await _context.StoreGroups.AddAsync(storeGroup);
                 await _context.SaveChangesAsync();
@@ -52,6 +54,7 @@ namespace Garmetix.UI.Seeders
                     Name = "Aadwika Fashion",
                     StoreGroupId = storeGroup.Id,
                     CompanyId = company.Id
+                    ,Id = Guid.NewGuid()
                 };
                 await _context.Stores.AddAsync(store);
                 await _context.SaveChangesAsync();
@@ -63,7 +66,7 @@ namespace Garmetix.UI.Seeders
             {
                 adminUser = new AppUser
                 {
-                    Name = "Ajay Kumar", // System Owner
+                    Name = "Amit Kumar", // System Owner
                     UserName = "admin",
                     PasswordHash = _authService.HashSecret("admin123"), // Securely hash default password
                     Role = LoginRole.Admin,

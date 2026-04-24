@@ -26,11 +26,13 @@
                         <sfgrid:DataGridNumericColumn MappingName="TotalAmount" HeaderText="Total (₹)" Format="N2" FontAttributes="Bold"/>
                     </sfgrid:SfDataGrid.Columns>
                 </sfgrid:SfDataGrid>
+            not used
             </Border>-->
-            <Border BackgroundColor="White" Padding="10" StrokeShape="RoundRectangle 8" StrokeThickness="0" VerticalOptions="FillAndExpand">
-                <sfgrid:SfDataGrid ItemsSource="{Binding CartItems}" AutoGenerateColumnsMode="None" HeaderRowHeight="50" RowHeight="55">
-                    <sfgrid:SfDataGrid.Columns>
-                        <sfgrid:DataGridTextColumn MappingName="ProductName" HeaderText="Item" Width="200"/>
+            <Border BackgroundColor="White" Padding="10" StrokeShape="RoundRectangle 8" StrokeThickness="0" VerticalOptions="Fill">
+            <VerticalStackLayout VerticalOptions="Fill" >  
+            <sfgrid:SfDataGrid ItemsSource="{Binding CartItems}"  ColumnWidthMode="Fill"  VerticalOptions="Fill"  AutoGenerateColumnsMode="None" HeaderRowHeight="50" RowHeight="55">
+                <sfgrid:SfDataGrid.Columns>
+                    <sfgrid:DataGridTextColumn MappingName="ProductName" HeaderText="Item" Width="200"/>
                         <sfgrid:DataGridNumericColumn MappingName="Rate" HeaderText="Rate" Format="N2"/>
                         <sfgrid:DataGridNumericColumn MappingName="Quantity" HeaderText="Qty" Format="0.##"/>
 
@@ -48,6 +50,7 @@
 
                     </sfgrid:SfDataGrid.Columns>
                 </sfgrid:SfDataGrid>
+            </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
 

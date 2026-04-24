@@ -10,5 +10,14 @@ namespace Garmetix.UI.Views.Sales
             InitializeComponent();
             BindingContext = viewModel;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext is PosViewModel vm)
+            {
+                _ = vm.LoadProductsAsync();
+            }
+        }
     }
 }
